@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -31,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts'
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -70,15 +74,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'django_forum.wsgi.application'
 
 
-# Database
+# Database Heroku
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+import dj_database_url
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+DATABASES['default'] = dj_database_url.config(default='postgres://itrdofreyezwjm:184360dca99810ef212e71e7770b7dc9d5d5a3b51564f58047580200b54a1ac2@ec2-54-235-92-43.compute-1.amazonaws.com:5432/d8ij4o0tv5a3v')
 
 
 # Password validation
