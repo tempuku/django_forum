@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+#Set redirections for login/logout
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
@@ -30,11 +31,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#Set bootstrap4 as the default styling framework
+CRISPY_TEMPLATE_PACK =  'bootstrap4'
 
 # Application definition
-
 INSTALLED_APPS = [
-    'accounts'
+    'accounts',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,9 +79,23 @@ WSGI_APPLICATION = 'django_forum.wsgi.application'
 
 # Database Heroku
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd8ij4o0tv5a3v',
+        'PASSWORD': '184360dca99810ef212e71e7770b7dc9d5d5a3b51564f58047580200b54a1ac2',
+        'HOST': 'ec2-54-235-92-43.compute-1.amazonaws.com',
+        'USER': 'itrdofreyezwjm',
+        'PORT': '5432',
+    }
+}
+
+# Heroku: Update database configuration from $DATABASE_URL.
+
 import dj_database_url
 
-DATABASES['default'] = dj_database_url.config(default='postgres://itrdofreyezwjm:184360dca99810ef212e71e7770b7dc9d5d5a3b51564f58047580200b54a1ac2@ec2-54-235-92-43.compute-1.amazonaws.com:5432/d8ij4o0tv5a3v')
+DATABASES['default'].update(dj_database_url.config('postgres://itrdofreyezwjm:184360dca99810ef212e71e7770b7dc9d5d5a3b51564f58047580200b54a1ac2@ec2-54-235-92-43.compute-1.amazonaws.com:5432/d8ij4o0tv5a3v'))
 
 
 # Password validation
