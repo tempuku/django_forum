@@ -1,10 +1,21 @@
 from django.shortcuts import render
 from .models import Forum, Comment
+from .form import ForumForm
+from django.urls import reverse
 
 # Create your views here.
 def index(request):
+    if request.method = 'POST':
+        form = ForumForm(request.POST)
+        if form.is_valid():
+            f = form.save()
+            forum_id = f.pk
+            return HttpResponseRedirect(reverse("forum", args=forum_id))
+
+    form = ForumForm()
     context = {
-        "forums": Forum.object.all()
+        "forums": Forum.object.all(),
+        "form": form
     }
     return render(request, "forum/index.html", context)
 
