@@ -14,7 +14,7 @@ def index(request):
 
     form = ForumForm()
     context = {
-        "forums": Forum.object.all(),
+        "forums": Forum.object.order_by('-created_at'),
         "form": form
     }
     return render(request, "forum/index.html", context)
@@ -24,11 +24,23 @@ def forum(request, forum_id):
         forum = Forum.objects.get(pk=forum_id)
     except: Forum.DoesNotExist:
         raise Http404("Forum does not exist")
+
+    if request.method = 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            f = form.save(commit=False)
+            f.forum = Forum.object.get(pk=forum_id)
+            f.save()
+            return HttpResponseRedirect(reverse("forum", args=forum_id))
+
+    form = CommentForm()
     context = {
     "forum": forum,
+    "form": form,
     }
     return render(request, "forum/forum.html", context)
 
+#would not be required
 def comment(request, forum_id):
     if request.method != 'POST':
         raise Http404('Only POSTs are allowed')

@@ -5,3 +5,8 @@ class ForumForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = 'title'
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        field = 'desc'
