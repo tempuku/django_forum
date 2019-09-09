@@ -1,11 +1,13 @@
-<!doctype  html>
+﻿<!doctype  html>
+{% load static %}
 <html  lang="en">
   <head>
     <link  rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"  crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>{% block title %} {% endblock %}</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+    <nav class="navbar navbar-expand-md bg-primary navbar-dark">
       <a class="navbar-brand" href="{% url 'index' %}">
         <img src="https://www.forum-media.ru/images/forum-logo_300x300.png" alt="Forum Logo" height="60">
       </a>
@@ -37,11 +39,11 @@
     <div  class="container">
         {% block body %}
         {% endblock %}
-        <hr>
     </div>
-    <footer class="footer bg-light text-muted fixed-bottom">
+    <footer class="footer text-muted">
+
       <div class="container">
-        <div class="row">
+        <div class="row small">
           <div class="col-sm-3 text-sm-left text-center">
             <p>© Forum 2019</p>
           </div>
