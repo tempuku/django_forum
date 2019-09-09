@@ -78,9 +78,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_forum.wsgi.application'
 
-
-# Database Heroku
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+#DB for docker-compose
 
 DATABASES = {
     'default': {
@@ -92,12 +90,16 @@ DATABASES = {
     }
 }
 
+#SQLite
+
 #DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #    }
 #}
+
+# Database Heroku
 
 #DATABASES = {
 #    'default': {
