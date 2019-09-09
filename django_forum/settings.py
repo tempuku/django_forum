@@ -36,6 +36,7 @@ CRISPY_TEMPLATE_PACK =  'bootstrap4'
 
 # Application definition
 INSTALLED_APPS = [
+    'forum',
     'accounts',
     'crispy_forms',
     'django.contrib.admin',
@@ -83,20 +84,27 @@ WSGI_APPLICATION = 'django_forum.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd8ij4o0tv5a3v',
-        'PASSWORD': '184360dca99810ef212e71e7770b7dc9d5d5a3b51564f58047580200b54a1ac2',
-        'HOST': 'ec2-54-235-92-43.compute-1.amazonaws.com',
-        'USER': 'itrdofreyezwjm',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'd8ij4o0tv5a3v',
+#        'PASSWORD': '184360dca99810ef212e71e7770b7dc9d5d5a3b51564f58047580200b54a1ac2',
+#        'HOST': 'ec2-54-235-92-43.compute-1.amazonaws.com',
+#        'USER': 'itrdofreyezwjm',
+#        'PORT': '5432',
+#    }
+#}
+
 # Heroku: Update database configuration from $DATABASE_URL.
 
-import dj_database_url
+#import dj_database_url
 
-DATABASES['default'].update(dj_database_url.config('postgres://itrdofreyezwjm:184360dca99810ef212e71e7770b7dc9d5d5a3b51564f58047580200b54a1ac2@ec2-54-235-92-43.compute-1.amazonaws.com:5432/d8ij4o0tv5a3v'))
+#DATABASES['default'].update(dj_database_url.config('postgres://itrdofreyezwjm:184360dca99810ef212e71e7770b7dc9d5d5a3b51564f58047580200b54a1ac2@ec2-54-235-92-43.compute-1.amazonaws.com:5432/d8ij4o0tv5a3v'))
 
 
 # Password validation

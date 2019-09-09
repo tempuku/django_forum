@@ -3,10 +3,10 @@ from .models import Forum, Comment
 
 class ForumForm(forms.ModelForm):
     class Meta:
-        model = Post
-        fields = 'title'
+        model = Forum
+        fields = ('title',)
 
 class CommentForm(forms.ModelForm):
     class Meta:
-        model = Post
-        field = 'desc'
+        model = Comment
+        fields = ('desc',)

@@ -1,1 +1,52 @@
-{% extends  'base.html' %}
+{% extends  '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Forum -{{ forum.title }} {% endblock %}
+
+{% block body %}
+<div class="row">
+  <div class="col-md-9">
+    <div class="jumbotron ">
+      <h1>{{forum.title}}</h1>
+        <p class="mb-2 text-muted"> by {{ forum.user }} at {{ forum.created_at }}</p>
+        <hr class="my-4">
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-9">
+{% if user.is_authenticated %}
+    <form action="{% url 'forum' forum.id %}" method="post">
+      {% csrf_token %} {{ form|crispy }}
+      <button type="submit" class="btn btn-primary btn-block">Add Comment</button>
+    </form>
+    <hr class="my-4">
+{% else %}
+    <div class="card">
+      <div class="card-header">
+        Please, <a class="link" href="{% url 'login' %}">log in</a>
+        to send a comment!
+      </div>
+    </div>
+{% endif %}
+  </div>
+</div>
+
+{% for comment in comments %}
+<div class="row">
+  <div class="col-md-9">
+    <div class="card">
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p>{{ comment.desc }}</p>
+          <footer class="blockquote-footer">{{ comment.user }},
+          <p class="text-bold">{{ comment.created_at }}</p>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

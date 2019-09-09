@@ -1,0 +1,41 @@
+{% extends  '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Forum {% endblock %}
+
+{% block body %}
+
+<div class="row">
+  <div class="col-md-9 m-4">
+{% if user.is_authenticated %}
+    <form action="{% url 'index' %}" method="post">
+      {% csrf_token %} {{ form|crispy }}
+      <button type="submit" class="btn btn-primary btn-block">Add new post</button>
+    </form>
+    <hr class="my-4">
+{% else %}
+    <div class="jumbotron">
+      <h1 class="display-4 text-premier">Dear Friend!</h1>
+      <p class="lead">If you want more properties, please authenticate!</p>
+      <hr class="my-4">
+    </div>
+{% endif %}
+  </div>
+</div>
+
+{% for forum in forums %}
+<div class="row">
+    <div class="col col-md-9">
+        <div class="card">
+          <div class="card-header">
+            {{ forum.user }}
+          </div>
+          <div class="card-body">
+            <a href="{% url 'forum' forum.id %}">{{ forum.title }}</a>
+          </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
