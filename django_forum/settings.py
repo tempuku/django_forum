@@ -78,17 +78,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_forum.wsgi.application'
 
-DB for docker-compose
+# DB for docker-compose
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
-        'USER': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
+        'USER': 'user',
+        'PASSWORD': 'password',
+        'HOST': 'localhost', # set in docker-compose.yml
+        'PORT': 5432 # default postgres port
     }
 }
+
 
 #SQLite
 
