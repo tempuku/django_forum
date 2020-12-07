@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from backend.forum import views
+from forum import views
 
 urlpatterns = [
     path('', views.redirect_views),

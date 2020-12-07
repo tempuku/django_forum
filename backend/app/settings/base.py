@@ -1,9 +1,10 @@
 import os
 
 from .path import TEMPLATES_PATH
+from distutils.util import strtobool
 
-DEBUG = bool(os.getenv('DEBUG'))
-TEST = bool(os.getenv('TEST'))
+DEBUG = bool(strtobool(os.getenv('DEBUG')))
+TEST = bool(strtobool(os.getenv('TEST')))
 
 ALLOWED_HOSTS = ['*']
 

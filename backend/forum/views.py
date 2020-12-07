@@ -5,10 +5,12 @@ from django.urls import reverse
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect, Http404
 
+
 # Create your views here.
 def redirect_views(request):
     response = redirect('/forum')
     return response
+
 
 def index(request):
     if request.method == 'POST':
@@ -26,6 +28,7 @@ def index(request):
         "form": form
     }
     return render(request, "forum/index.html", context)
+
 
 def forum(request, forum_id):
     try:
@@ -48,13 +51,14 @@ def forum(request, forum_id):
     except forum.DoesNotExist:
         comments = "No comments"
     context = {
-    "forum": forum,
-    "form": form,
-    "comments": comments,
+        "forum": forum,
+        "form": form,
+        "comments": comments,
     }
     return render(request, "forum/forum.html", context)
 
-#would not be required
+
+# would not be required
 def comment(request, forum_id):
     if request.method != 'POST':
         raise Http404('Only POSTs are allowed')
